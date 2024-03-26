@@ -1,7 +1,7 @@
 import { useBalance } from "wagmi";
 
 const Balance = ({ address }) => {
-  const { data, isError, isLoading } = useBalance({
+  const { data, isError, isLoading, error } = useBalance({
     address,
   });
 

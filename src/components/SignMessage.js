@@ -3,16 +3,11 @@ import { useSignMessage } from "wagmi";
 
 const SignMessage = () => {
   const [message, setMessage] = useState("");
-  const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
-    message,
-    onSuccess(data) {
-      console.log("Success: ", data);
-    },
-  });
+  const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signMessage();
+    signMessage({ message: message });
     setMessage("");
   };
 

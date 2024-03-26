@@ -1,23 +1,23 @@
-import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { mainnet } from "wagmi/chains";
-import { publicProvider } from "wagmi/providers/public";
-import { DedicatedWalletConnector } from "@magiclabs/wagmi-connector";
+import { createConfig, WagmiProvider } from "wagmi";
+import { http } from "viem";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { sepolia } from '@wagmi/core/chains'
+import { dedicatedWalletConnector } from "@magiclabs/wagmi-connector";
 import Dashboard from "./components/Dashboard";
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet],
-  [publicProvider()]
-);
+const queryClient = new QueryClient();
 
 const config = createConfig({
+  chains: [sepolia],
+  transports: {
+    [sepolia.id]: http(process.env.REACT_APP_RPC_URL)
+  },
   autoConnect: true,
-  publicClient,
-  webSocketPublicClient,
   connectors: [
-    new DedicatedWalletConnector({
-      chains,
+    dedicatedWalletConnector({
+      chains: [sepolia],
       options: {
-        apiKey: "pk_live_D34413A845CE453E",
+        apiKey: process.env.REACT_APP_MAGIC_API_KEY,
         isDarkMode: true,
         /* Make sure to enable OAuth options from magic dashboard */
         oauthOptions: {
@@ -25,8 +25,8 @@ const config = createConfig({
         },
         magicSdkConfiguration: {
           network: {
-            rpcUrl: "https://rpc.ankr.com/eth",
-            chainId: 1,
+            rpcUrl: process.env.REACT_APP_RPC_URL,
+            chainId: 11155111,
           },
         },
       },
@@ -36,9 +36,11 @@ const config = createConfig({
 
 function App() {
   return (
-    <WagmiConfig config={config}>
-      <Dashboard />
-    </WagmiConfig>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <Dashboard />
+      </QueryClientProvider>
+    </WagmiProvider>
   );
 }
 

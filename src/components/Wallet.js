@@ -1,15 +1,14 @@
 import { useAccount, useEnsName, useDisconnect, useNetwork } from "wagmi";
 import Balance from "./Balance";
 import SignMessage from "./SignMessage";
-// import SendTransaction from "./SendTransaction";
+import SendTransaction from "./SendTransaction";
 import StatusCircle from "./StatusCircle";
 import Divider from "./Divider";
 
 const Wallet = () => {
-  const { address, connector: activeConnector, status } = useAccount();
+  const { address, connector: activeConnector, status, chain } = useAccount();
   const { data: ensName } = useEnsName({ address });
   const { disconnect } = useDisconnect();
-  const { chain } = useNetwork();
 
   return (
     <div className="wallet-container">
@@ -23,8 +22,9 @@ const Wallet = () => {
       <div>Connected to {ensName ?? address}</div>
       <Balance address={address} />
       <Divider />
-      {/* <SendTransaction /> */}
       <SignMessage />
+      <Divider />
+      <SendTransaction />
       <Divider />
       <button className="disconnect-button" onClick={() => disconnect()}>
         Disconnect

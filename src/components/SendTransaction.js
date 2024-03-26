@@ -2,40 +2,32 @@ import { parseEther } from "ethers/lib/utils.js";
 import { useState } from "react";
 import {
   useSendTransaction,
-  usePrepareSendTransaction,
-  useWaitForTransaction,
 } from "wagmi";
 import { useDebounce } from "use-debounce";
 
 const SendTransaction = () => {
-  const [address, setAddress] = useState(
-    "0x8bdCE5551B544AF8dFfB09Ff34c34da7FC241Bd0"
-  );
-  const [debouncedAddress] = useDebounce(address, 500);
+  const [address, setAddress] = useState("0x8bdCE5551B544AF8dFfB09Ff34c34da7FC241Bd0");
   const [amount, setAmount] = useState("0.01");
+
+  // Note: The debounced values are for UI purposes, such as validation or UI updates,
+  // and shouldn't be used directly for sending transactions on form submit.
+  const [debouncedAddress] = useDebounce(address, 500);
   const [debouncedAmount] = useDebounce(amount, 500);
 
-  const { config, error } = usePrepareSendTransaction({
-    request: {
-      to: debouncedAddress,
-      value: debouncedAmount ? parseEther(debouncedAmount) : undefined,
-    },
-  });
+  const { data: hash, sendTransaction, isLoading, isSuccess, error } = useSendTransaction();
 
-  const { data, sendTransaction } = useSendTransaction(config);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Use the actual input values, not the debounced ones, for sending transactions.
+    sendTransaction({
+      to: debouncedAddress, // Make sure this is the recipient's address
+      value: parseEther(debouncedAmount) // Convert the amount to the necessary format
+    });
+  };
 
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  });
-  console.log(config);
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          sendTransaction?.();
-        }}
-      >
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <input
           value={address}
           placeholder="Receiving Address"
@@ -47,23 +39,12 @@ const SendTransaction = () => {
           onChange={(e) => setAmount(e.target.value)}
         />
         <button
-          disabled={isLoading || !sendTransaction || !address || !amount}
+          disabled={isLoading || !address || !amount}
           type="submit"
         >
-          {isLoading ? "Sending..." : "Send"}
+          {isLoading ? "Sending..." : "Send Transaction"}
         </button>
-        {isSuccess && (
-          <div>
-            Successfully sent {amount} ether to {address}. View transaction on{" "}
-            <a
-              href={`https://goerli.etherscan.io/tx/${data?.hash}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Etherscan
-            </a>
-          </div>
-        )}
+        {hash && <div>Transaction Hash: {hash}</div>}
         {error && (
           <div>
             An error occurred preparing the transaction: {error.message}
