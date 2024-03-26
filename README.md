@@ -13,7 +13,7 @@ For full documentation on the connector please [visit here](https://github.com/m
 
 * rpcUrl: "https://rpc.ankr.com/eth" and chainId: 1 are now rpcUrl: process.env.REACT_APP_RPC_URL and chainId: 11155111.
 
-* <WagmiConfig config={config}> and <Dashboard /> are now wrapped in <WagmiProvider config={config}> and <QueryClientProvider client={queryClient}>.
+* WagmiConfig config={config} and Dashboard are now wrapped in WagmiProvider config={config} and QueryClientProvider client={queryClient}.
 
 * usePrepareSendTransaction, useWaitForTransaction, and a more complex state management for address and amount in SendTransaction are replaced by a simplified use of useSendTransaction and direct state management without debouncing.
 
@@ -21,6 +21,6 @@ For full documentation on the connector please [visit here](https://github.com/m
 
 * {isLoading ? "Sending..." : "Send"} is now {isLoading ? "Sending..." : "Send Transaction"}.
 
-* Success message display based on isSuccess and transaction hash link to Etherscan is removed, replaced by {hash && <div>Transaction Hash: {hash}</div>}.
+* Success message display based on isSuccess and transaction hash link to Etherscan is removed, replaced by {hash && Transaction Hash: {hash}}.
 
 * The detailed configuration in useSignMessage including message and onSuccess callback is simplified to direct use without inline configuration. signMessage(); is now signMessage({ message: message });
