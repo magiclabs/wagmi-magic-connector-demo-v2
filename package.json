@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@magiclabs/wagmi-connector": "^2.0.0",
+    "@magiclabs/wagmi-connector": "^2.1.1",
     "@tanstack/react-query": "^5.28.8",
     "dotenv": "^16.4.5",
     "ethers": "^5.7.2",
