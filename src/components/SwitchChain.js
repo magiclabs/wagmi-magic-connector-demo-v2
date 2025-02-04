@@ -6,7 +6,6 @@ const SwitchChain = () => {
   const { switchChain, error, isPending } = useSwitchChain();
   const [selectedChain, setSelectedChain] = useState(chainId);
 
-  console.log("selectedChain", selectedChain);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Switching chain to", selectedChain);
