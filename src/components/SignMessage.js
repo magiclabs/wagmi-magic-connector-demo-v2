@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useSignMessage } from "wagmi";
+import { useAccount, useSignMessage } from "wagmi";
 
 const SignMessage = () => {
+  const { status } = useAccount();
+  const { data, isError, isSuccess, signMessage, isPending } = useSignMessage();
   const [message, setMessage] = useState("");
-  const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,8 +20,8 @@ const SignMessage = () => {
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Write your message..."
         />
-        <button className="secondary-button" disabled={isLoading} type="submit">
-          Sign message
+        <button disabled={isPending || status !== "connected"} type="submit">
+          {isPending ? "Signing..." : "Sign message"}
         </button>
       </form>
       {isSuccess && <div className="message-status">Signature: {data}</div>}
