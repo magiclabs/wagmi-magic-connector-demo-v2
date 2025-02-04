@@ -5,6 +5,7 @@ import SendTransaction from "./SendTransaction";
 import StatusCircle from "./StatusCircle";
 import Divider from "./Divider";
 import SwitchChain from "./SwitchChain";
+import { config } from "../App";
 
 const Wallet = () => {
   const {
@@ -13,7 +14,7 @@ const Wallet = () => {
     status,
     chain,
     chainId,
-  } = useAccount();
+  } = useAccount({ config });
   const { data: ensName } = useEnsName({ address });
   const { disconnect } = useDisconnect();
 
