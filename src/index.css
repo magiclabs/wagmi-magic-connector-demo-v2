@@ -59,6 +59,11 @@ button:active {
   background: #6851ff;
 }
 
+button:disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
 .sign-in-button {
   border-radius: 8rem;
   font-size: 1.8rem;
@@ -149,9 +154,11 @@ input {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 110px;
+  height: 106px;
 }
 
 .message-status {
   margin-top: 12px;
+  text-wrap: wrap;
+  word-break: break-all;
 }

@@ -11,8 +11,6 @@ For full documentation on the connector please [visit here](https://github.com/m
 
 * chains, publicClient, and webSocketPublicClient in config are now chains: [sepolia], transports: {[sepolia.id]: http(process.env.REACT_APP_RPC_URL)}, and autoConnect remains with additional configuration for dedicatedWalletConnector.
 
-* rpcUrl: "https://rpc.ankr.com/eth" and chainId: 1 are now rpcUrl: process.env.REACT_APP_RPC_URL and chainId: 11155111.
-
 * WagmiConfig config={config} and Dashboard are now wrapped in WagmiProvider config={config} and QueryClientProvider client={queryClient}.
 
 * usePrepareSendTransaction, useWaitForTransaction, and a more complex state management for address and amount in SendTransaction are replaced by a simplified use of useSendTransaction and direct state management without debouncing.

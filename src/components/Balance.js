@@ -9,7 +9,10 @@ const Balance = ({ address }) => {
   if (isError) return <div>Error fetching balance</div>;
   return (
     <div>
-      Balance: {data?.formatted} {data?.symbol}
+      Balance:{" "}
+      <span style={{ fontWeight: 500 }}>
+        {data?.formatted} {data?.symbol}
+      </span>
     </div>
   );
 };
