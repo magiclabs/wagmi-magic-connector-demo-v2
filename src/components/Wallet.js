@@ -7,18 +7,31 @@ import Divider from "./Divider";
 import SwitchChain from "./SwitchChain";
 
 const Wallet = () => {
-  const { address, connector: activeConnector, status, chain } = useAccount();
+  const {
+    address,
+    connector: activeConnector,
+    status,
+    chain,
+    chainId,
+  } = useAccount();
   const { data: ensName } = useEnsName({ address });
   const { disconnect } = useDisconnect();
 
   return (
     <div className="wallet-container">
-      <div>Connector: {activeConnector?.name}</div>
+      <div>
+        Connector:{" "}
+        <span style={{ fontWeight: 500 }}>{activeConnector?.name}</span>
+      </div>
       <div className="status-container">
         <div>Status:</div> <StatusCircle status={status} />
       </div>
 
-      {chain && <div>Chain: {chain?.name}</div>}
+      {chain && (
+        <div>
+          Chain: <span style={{ fontWeight: 500 }}>{chain?.name}</span>
+        </div>
+      )}
 
       <Divider />
       <div>
@@ -27,7 +40,7 @@ const Wallet = () => {
       </div>
       <Balance address={address} />
       <Divider />
-      <SwitchChain />
+      <SwitchChain chainId={chainId} />
       <Divider />
       <SignMessage />
       <Divider />

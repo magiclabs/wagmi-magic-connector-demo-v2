@@ -1,8 +1,8 @@
 import { useAccount, useSwitchChain } from "wagmi";
 import { useState } from "react";
 
-const SwitchChain = () => {
-  const { chainId } = useAccount();
+const SwitchChain = ({ chainId }) => {
+  const { status } = useAccount();
   const { switchChain, error, isPending } = useSwitchChain();
   const [selectedChain, setSelectedChain] = useState(chainId);
 
@@ -16,11 +16,16 @@ const SwitchChain = () => {
     <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
       <form
         onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: 10 }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 10,
+        }}
       >
         <select
           style={{
-            width: "100%",
+            width: 304,
             height: 48,
             borderRadius: 10,
             padding: "8px",
@@ -32,11 +37,11 @@ const SwitchChain = () => {
           <option value={80002}>Amoy</option>
           <option value={84532}>Base Sepolia</option>
         </select>
-        <button disabled={isPending} type="submit">
-          {isPending ? "Switching Chains" : "Switch Chain"}
+        <button disabled={isPending || status !== "connected"} type="submit">
+          {isPending ? "Switching Chains..." : "Switch Chain"}
         </button>
       </form>
-      {error && <div>Error switching chain</div>}
+      {error && <div>Error switching chain: {error.message}</div>}
     </div>
   );
 };

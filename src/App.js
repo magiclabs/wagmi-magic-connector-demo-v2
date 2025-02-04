@@ -19,7 +19,7 @@ export const config = createConfig({
     dedicatedWalletConnector({
       chains: [sepolia, polygonAmoy, baseSepolia],
       options: {
-        networks: [sepolia, polygonAmoy, baseSepolia],
+        networks: ["sepolia", polygonAmoy, baseSepolia],
         apiKey: process.env.REACT_APP_MAGIC_API_KEY,
         isDarkMode: true,
         /* Make sure to enable OAuth options from magic dashboard */

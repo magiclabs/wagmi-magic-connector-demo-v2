@@ -1,9 +1,16 @@
 import { parseEther } from "ethers/lib/utils.js";
 import { useState } from "react";
-import { useSendTransaction } from "wagmi";
+import { useAccount, useSendTransaction } from "wagmi";
 import { useDebounce } from "use-debounce";
 
 const SendTransaction = () => {
+  const {
+    data: hash,
+    sendTransaction,
+    isPending,
+    error,
+  } = useSendTransaction();
+  const { status } = useAccount();
   const [address, setAddress] = useState(
     "0x8bdCE5551B544AF8dFfB09Ff34c34da7FC241Bd0"
   );
@@ -13,13 +20,6 @@ const SendTransaction = () => {
   // and shouldn't be used directly for sending transactions on form submit.
   const [debouncedAddress] = useDebounce(address, 500);
   const [debouncedAmount] = useDebounce(amount, 500);
-
-  const {
-    data: hash,
-    sendTransaction,
-    isLoading,
-    error,
-  } = useSendTransaction();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +33,12 @@ const SendTransaction = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      style={{ display: "flex", flexDirection: "column", gap: 8 }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 10,
+      }}
     >
       <input
         value={address}
@@ -45,8 +50,11 @@ const SendTransaction = () => {
         placeholder="Amount of ETH"
         onChange={(e) => setAmount(e.target.value)}
       />
-      <button disabled={isLoading || !address || !amount} type="submit">
-        {isLoading ? "Sending..." : "Send Transaction"}
+      <button
+        disabled={isPending || !address || !amount || status !== "connected"}
+        type="submit"
+      >
+        {isPending ? "Sending..." : "Send Transaction"}
       </button>
       {hash && <div>Transaction Hash: {hash}</div>}
       {error && (
