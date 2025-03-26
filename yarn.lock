@@ -2345,43 +2345,43 @@
   dependencies:
     "@lit-labs/ssr-dom-shim" "^1.0.0"
 
-"@magic-ext/oauth@^22.0.3":
-  version "22.20.0"
-  resolved "https://registry.yarnpkg.com/@magic-ext/oauth/-/oauth-22.20.0.tgz#e66617a24d32faaebad5946eb78d840ce1682b41"
-  integrity sha512-XW9IBS+YR6S0U6gFpQSgithsltYLzYJv6N5TY22WglzbCXqWmnGRAF1wAjL3woM6P8yyzKS5d9VewM/A9BhDPw==
+"@magic-ext/oauth@^23.0.3":
+  version "23.0.3"
+  resolved "https://registry.yarnpkg.com/@magic-ext/oauth/-/oauth-23.0.3.tgz#706917172a8b15e5240848d64821aa2b24189dd0"
+  integrity sha512-O5gFYT8fp8wZCy2gSwUw75ZHYk260osOlhoyqn56jPc1Tr0jBXcnVFnNHV+VBJx0Jj3ClVKHHt0/zUJe6liptg==
   dependencies:
-    crypto-js "^3.3.0"
+    crypto-js "^4.2.0"
 
-"@magic-sdk/commons@^24.18.1":
-  version "24.18.1"
-  resolved "https://registry.yarnpkg.com/@magic-sdk/commons/-/commons-24.18.1.tgz#a7177723fb2aea82c22bf7c03522d04ed0ade25a"
-  integrity sha512-0m2pgPu39BEPLfH/gyuVVgQF1WPBJWfKA65N5tfFCqJ2L+nZVKRmw+kg+Q5H8dMIqLY32sTD0cvjwJxYzPCHQA==
+"@magic-sdk/commons@^25.0.2":
+  version "25.0.2"
+  resolved "https://registry.yarnpkg.com/@magic-sdk/commons/-/commons-25.0.2.tgz#3ed35d1964a0a740135956e5310b303bb5552fb3"
+  integrity sha512-ZyCREjNafxWuxpvBoYWgLZTBoZh47sYckItLwbI0JHoQxzkoGYwlUg33DLauQyVuTOMJMc+aGgLM7qZ1xXHkeg==
 
-"@magic-sdk/provider@^28.18.1", "@magic-sdk/provider@^28.6.0":
-  version "28.18.1"
-  resolved "https://registry.yarnpkg.com/@magic-sdk/provider/-/provider-28.18.1.tgz#2b105a797d53ff8500b448798a15b7728bfb0661"
-  integrity sha512-9NEY7RoVsjXa9xDbLvAe9rxqvDve+3ywTH1rvQgTX7dsoq7REbeXK6UcrxpsV9enAnEqqhvjWAL+Q3PRwoau9A==
+"@magic-sdk/provider@^29.0.2":
+  version "29.0.2"
+  resolved "https://registry.yarnpkg.com/@magic-sdk/provider/-/provider-29.0.2.tgz#349d60859232885e60a4030bc51efa632bf14c96"
+  integrity sha512-4KUufnITFyfbHBfTYswfU4SLhYXSMMMR/Hct2PJb8NKYJwn405jWIEh19xKUNYpg04B9m8RY0WG2lurwLOQx/Q==
   dependencies:
-    "@magic-sdk/types" "^24.16.1"
+    "@magic-sdk/types" "^24.18.1"
     eventemitter3 "^4.0.4"
     web3-core "1.5.2"
 
-"@magic-sdk/types@^24.16.1":
-  version "24.16.1"
-  resolved "https://registry.yarnpkg.com/@magic-sdk/types/-/types-24.16.1.tgz#aa8c4382194e121bdd8e0c22a0ee9dee3f926c4c"
-  integrity sha512-XpdL6P36N7XYTiffhvzs49HbhA3uPro4ApcTF6xxk1VNv2L6v28Dg7FnNa8qib0FGHrypZVKK2cWpX6ioi5ZpA==
+"@magic-sdk/types@^24.18.1":
+  version "24.18.1"
+  resolved "https://registry.yarnpkg.com/@magic-sdk/types/-/types-24.18.1.tgz#aa7f6f8d5a6ef07ea14f35e19dd75f8cfc0b83b1"
+  integrity sha512-r/06vHruERropfAIF1pZlYAqMLpGJeSy0YjJJ/8L3kA2EKy+Di0+r0DFJjXs58LUZtDN0GgSCOYTt7r49W6/Ug==
 
-"@magiclabs/wagmi-connector@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@magiclabs/wagmi-connector/-/wagmi-connector-2.2.1.tgz#8381429e55ece048093abd8aca751a6a0fa46701"
-  integrity sha512-qGgCteQbt63zpRiIsLHyYj2Y6pJ0jKUirxkjTHnkX7CNJuQIq/OzwTJcZByUt62B7qsK7FqkWFx4AwwvqvhGYA==
+"@magiclabs/wagmi-connector@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@magiclabs/wagmi-connector/-/wagmi-connector-2.2.2.tgz#706536b27ac59e932b0b89164549762b390d62df"
+  integrity sha512-AhbXCT2/GS9SZsabmFzj+e+Na1RRrIL6hhSpLQBuHftYAzHQgFWYSt5dhuD0N1RacuIsDEtK+QSshA7dGk7FIg==
   dependencies:
     "@changesets/cli" "^2.24.0"
-    "@magic-ext/oauth" "^22.0.3"
-    "@magic-sdk/provider" "^28.6.0"
+    "@magic-ext/oauth" "^23.0.3"
+    "@magic-sdk/provider" "^29.0.2"
     "@wagmi/connectors" "^5.0.6"
     "@wagmi/core" "^2.10.4"
-    magic-sdk "^28.6.0"
+    magic-sdk "^29.0.2"
     tsc-esm-fix "^2.20.27"
 
 "@manypkg/find-root@^1.1.0":
@@ -5760,10 +5760,10 @@ crossws@^0.2.0, crossws@^0.2.2:
   resolved "https://registry.yarnpkg.com/crossws/-/crossws-0.2.4.tgz#82a8b518bff1018ab1d21ced9e35ffbe1681ad03"
   integrity sha512-DAxroI2uSOgUKLz00NX6A8U/8EE3SZHmIND+10jkVSaypvyt57J5JEOxAQOL6lQxyzi/wZbTIwssU1uy69h5Vg==
 
-crypto-js@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.3.0.tgz#846dd1cce2f68aacfa156c8578f926a609b7976b"
-  integrity sha512-DIT51nX0dCfKltpRiXV+/TVZq+Qq2NgF4644+K7Ttnla7zEzqc+kjJyiB96BHNyUTBxyjzRcZYpUdZa+QAqi6Q==
+crypto-js@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
 
 crypto-random-string@^2.0.0:
   version "2.0.0"
@@ -9662,14 +9662,14 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-magic-sdk@^28.6.0:
-  version "28.19.1"
-  resolved "https://registry.yarnpkg.com/magic-sdk/-/magic-sdk-28.19.1.tgz#d94155a79858334dfe54966bc3b1f28685f425fa"
-  integrity sha512-a94WqJ6mvSwynekwVfM/diKXCbkieKvCdp/CRDLqlPWEmbv+yLhZiW3B3gwk8nLWjGHZrL/4uCgOHvaZQm05Ng==
+magic-sdk@^29.0.2:
+  version "29.0.2"
+  resolved "https://registry.yarnpkg.com/magic-sdk/-/magic-sdk-29.0.2.tgz#d5a392fbf1dc839ef186b00396ccf98267809c67"
+  integrity sha512-qVSPx5esiUe1FKv1wwSO//Q3E+i119mBj6RYZLf9/EbsqGpmMNFPN9N4yJ+Rhu4BmRQpYv/nuy8Josue3cTOHA==
   dependencies:
-    "@magic-sdk/commons" "^24.18.1"
-    "@magic-sdk/provider" "^28.18.1"
-    "@magic-sdk/types" "^24.16.1"
+    "@magic-sdk/commons" "^25.0.2"
+    "@magic-sdk/provider" "^29.0.2"
+    "@magic-sdk/types" "^24.18.1"
     localforage "^1.7.4"
 
 magic-string@^0.25.0, magic-string@^0.25.7:
