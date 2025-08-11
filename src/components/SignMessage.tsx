@@ -1,12 +1,14 @@
-import { useState } from "react";
+"use client";
+
+import { useState, type FormEvent } from "react";
 import { useAccount, useSignMessage } from "wagmi";
 
-const SignMessage = () => {
+export default function SignMessage() {
   const { status } = useAccount();
   const { data, isError, isSuccess, signMessage, isPending } = useSignMessage();
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signMessage({ message: message });
     setMessage("");
@@ -28,6 +30,4 @@ const SignMessage = () => {
       {isError && <div className="message-status">Error signing message</div>}
     </div>
   );
-};
-
-export default SignMessage;
+}

@@ -1,9 +1,12 @@
+"use client";
+
 import { parseEther } from "ethers/lib/utils.js";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useAccount, useSendTransaction } from "wagmi";
 import { useDebounce } from "use-debounce";
+import type { Address } from "viem";
 
-const SendTransaction = () => {
+export default function SendTransaction() {
   const {
     data: hash,
     sendTransaction,
@@ -11,22 +14,22 @@ const SendTransaction = () => {
     error,
   } = useSendTransaction();
   const { status } = useAccount();
-  const [address, setAddress] = useState(
-    "0x8bdCE5551B544AF8dFfB09Ff34c34da7FC241Bd0"
+  const [address, setAddress] = useState<Address>(
+    "0x8bdCE5551B544AF8dFfB09Ff34c34da7FC241Bd0" as Address
   );
-  const [amount, setAmount] = useState("0.01");
+  const [amount, setAmount] = useState<string>("0.01");
 
   // Note: The debounced values are for UI purposes, such as validation or UI updates,
   // and shouldn't be used directly for sending transactions on form submit.
   const [debouncedAddress] = useDebounce(address, 500);
   const [debouncedAmount] = useDebounce(amount, 500);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Use the actual input values, not the debounced ones, for sending transactions.
     sendTransaction({
-      to: debouncedAddress, // Make sure this is the recipient's address
-      value: parseEther(debouncedAmount), // Convert the amount to the necessary format
+      to: debouncedAddress,
+      value: parseEther(debouncedAmount),
     });
   };
 
@@ -62,6 +65,4 @@ const SendTransaction = () => {
       )}
     </form>
   );
-};
-
-export default SendTransaction;
+}

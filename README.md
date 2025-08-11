@@ -1,24 +1,28 @@
-# Magic Wagmi Connector Demo
+## Magic Wagmi Connector Demo
 
-To start, run `yarn install` and then `yarn start`
+This demo showcases how to use Magic's dedicated wallet connector alongside MetaMask in a Next.js 15.4.6 application written in TypeScript.
 
-For full documentation on the connector please [visit here](https://github.com/magiclabs/wagmi-magic-connector).
+### Getting Started
 
+1. Install dependencies
 
-# Changes from v1
+   ```bash
+   yarn install
+   ```
 
-* configureChains, mainnet, publicProvider, WagmiConfig, publicClient, webSocketPublicClient, new DedicatedWalletConnector, and pk_live_D34413A845CE453E are now createConfig, WagmiProvider, http, QueryClient, QueryClientProvider, sepolia, dedicatedWalletConnector, and process.env.REACT_APP_MAGIC_API_KEY.
+2. Create a `.env.local` file with your Magic API key
 
-* chains, publicClient, and webSocketPublicClient in config are now chains: [sepolia], transports: {[sepolia.id]: http(process.env.REACT_APP_RPC_URL)}, and autoConnect remains with additional configuration for dedicatedWalletConnector.
+   ```
+   NEXT_PUBLIC_MAGIC_API_KEY=your_key_here
+   ```
 
-* WagmiConfig config={config} and Dashboard are now wrapped in WagmiProvider config={config} and QueryClientProvider client={queryClient}.
+3. Run the development server
 
-* usePrepareSendTransaction, useWaitForTransaction, and a more complex state management for address and amount in SendTransaction are replaced by a simplified use of useSendTransaction and direct state management without debouncing.
+   ```bash
+   yarn dev
+   ```
 
-* disabled={isLoading || !sendTransaction || !address || !amount} is now disabled={isLoading || !address || !amount}.
+The app exposes both Magic and MetaMask connectors. Use the sign-in buttons on the homepage to connect with your preferred wallet.
 
-* {isLoading ? "Sending..." : "Send"} is now {isLoading ? "Sending..." : "Send Transaction"}.
+For full documentation on the Magic connector please [visit the repo](https://github.com/magiclabs/wagmi-magic-connector).
 
-* Success message display based on isSuccess and transaction hash link to Etherscan is removed, replaced by {hash && Transaction Hash: {hash}}.
-
-* The detailed configuration in useSignMessage including message and onSuccess callback is simplified to direct use without inline configuration. signMessage(); is now signMessage({ message: message });

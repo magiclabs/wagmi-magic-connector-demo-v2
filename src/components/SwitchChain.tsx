@@ -1,12 +1,18 @@
-import { useAccount, useSwitchChain } from "wagmi";
-import { useState } from "react";
+"use client";
 
-const SwitchChain = ({ chainId }) => {
+import { useAccount, useSwitchChain } from "wagmi";
+import { useState, type FormEvent } from "react";
+
+interface SwitchChainProps {
+  chainId: number;
+}
+
+export default function SwitchChain({ chainId }: SwitchChainProps) {
   const { status } = useAccount();
   const { switchChain, error, isPending } = useSwitchChain();
-  const [selectedChain, setSelectedChain] = useState(chainId);
+  const [selectedChain, setSelectedChain] = useState<number>(chainId);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Switching chain to", selectedChain);
     switchChain({ chainId: selectedChain });
@@ -44,6 +50,4 @@ const SwitchChain = ({ chainId }) => {
       {error && <div>Error switching chain: {error.message}</div>}
     </div>
   );
-};
-
-export default SwitchChain;
+}
