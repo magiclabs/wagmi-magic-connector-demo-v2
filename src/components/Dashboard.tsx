@@ -1,8 +1,10 @@
+"use client";
+
 import { useAccount } from "wagmi";
 import SignIn from "./SignIn";
 import Wallet from "./Wallet";
 
-const Dashboard = () => {
+export default function Dashboard() {
   const { isConnected } = useAccount();
 
   return (
@@ -13,6 +15,4 @@ const Dashboard = () => {
       {!isConnected ? <SignIn /> : <Wallet />}
     </div>
   );
-};
-
-export default Dashboard;
+}

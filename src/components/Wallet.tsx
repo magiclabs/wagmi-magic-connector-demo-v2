@@ -1,3 +1,5 @@
+"use client";
+
 import { useAccount, useEnsName, useDisconnect } from "wagmi";
 import Balance from "./Balance";
 import SignMessage from "./SignMessage";
@@ -5,16 +7,11 @@ import SendTransaction from "./SendTransaction";
 import StatusCircle from "./StatusCircle";
 import Divider from "./Divider";
 import SwitchChain from "./SwitchChain";
-import { config } from "../App";
+import type { Address } from "viem";
 
-const Wallet = () => {
-  const {
-    address,
-    connector: activeConnector,
-    status,
-    chain,
-    chainId,
-  } = useAccount({ config });
+export default function Wallet() {
+  const { address, connector: activeConnector, status, chain, chainId } =
+    useAccount();
   const { data: ensName } = useEnsName({ address });
   const { disconnect } = useDisconnect();
 
@@ -39,9 +36,9 @@ const Wallet = () => {
         Connected to:{" "}
         <span style={{ fontWeight: 500 }}>{ensName ?? address}</span>
       </div>
-      <Balance address={address} />
+      <Balance address={address as Address} />
       <Divider />
-      <SwitchChain chainId={chainId} />
+      <SwitchChain chainId={chainId as number} />
       <Divider />
       <SignMessage />
       <Divider />
@@ -52,6 +49,4 @@ const Wallet = () => {
       </button>
     </div>
   );
-};
-
-export default Wallet;
+}

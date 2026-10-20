@@ -1,6 +1,13 @@
-import { useBalance } from "wagmi";
+"use client";
 
-const Balance = ({ address }) => {
+import { useBalance } from "wagmi";
+import type { Address } from "viem";
+
+interface BalanceProps {
+  address: Address;
+}
+
+export default function Balance({ address }: BalanceProps) {
   const { data, isError, isLoading } = useBalance({
     address,
   });
@@ -15,6 +22,4 @@ const Balance = ({ address }) => {
       </span>
     </div>
   );
-};
-
-export default Balance;
+}
